@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fruits Géants IA</title>
+<style>
+:root{--bg:#ffd23f;--ink:#2a1450;--card:#fffdf5;--ac:#7b2cbf}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+main{max-width:540px;margin:0 auto;padding:18px 14px 44px}
+h1{margin:6px 0 4px;font-size:2rem}
+h2{margin:0 0 8px;font-size:1.15rem}
+.lead{margin:0 0 16px;font-weight:600}
+.card{background:var(--card);border:3px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink);padding:14px;margin-bottom:16px}
+label{display:block;font-weight:700;margin:10px 0 4px}
+select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:10px;padding:10px}
+textarea{min-height:120px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{font:inherit;font-weight:700;background:var(--ac);color:#fff;border:3px solid var(--ink);border-radius:12px;padding:10px 14px;margin:8px 8px 0 0;cursor:pointer}
+button.alt{background:var(--card);color:var(--ink);padding:7px 11px;font-size:.9rem}
+button.big{width:100%;font-size:1.1rem;margin-right:0}
+button:disabled{opacity:.6;cursor:wait}
+img{width:100%;border-radius:12px;display:block;margin-top:8px}
+#msg{font-weight:700;margin:0}
+.links a{display:inline-block;margin:6px 6px 0 0;padding:6px 12px;border:2px solid var(--ink);border-radius:999px;background:#b5e61d;color:#2a1450;font-weight:700;text-decoration:none}
+.hint{font-size:.88rem;margin:8px 0 0}
+</style></head><body><main>
+<h1>Fruits Géants IA</h1>
+<p class="lead">Compose ton personnage, génère l’image, puis anime-la.</p>
+
+<section class="card">
+<label for="fruit">Fruit</label><select id="fruit"></select>
+<label for="rival">Face à face avec (facultatif)</label><select id="rival"></select>
+<div class="row">
+<div><label for="look">Apparence</label><select id="look"></select></div>
+<div><label for="size">Taille</label><select id="size"></select></div>
+</div>
+<label for="outfit">Tenue</label><select id="outfit"></select>
+<label for="place">Décor</label><select id="place"></select>
+<div class="row">
+<div><label for="mood">Humeur</label><select id="mood"></select></div>
+<div><label for="cam">Caméra</label><select id="cam"></select></div>
+</div>
+<button class="big" id="build" type="button">Créer le prompt</button>
+</section>
+
+<section class="card">
+<h2>Prompt image (modifiable)</h2>
+<textarea id="imgp"></textarea>
+<button class="big" id="gen" type="button">Générer l’image</button>
+<p id="msg" style="margin-top:10px">Compte 10 à 30 secondes par image.</p>
+<img id="out" alt="Image générée" hidden>
+<a id="dl" download="fruit.jpg" hidden><button class="alt" type="button">Télécharger l’image</button></a>
+</section>
+
+<section class="card">
+<h2>Prompt vidéo</h2>
+<textarea id="vidp" style="min-height:90px"></textarea>
+<button class="alt" id="cp" type="button">Copier</button>
+<div class="links">
+<a href="https://www.creen.ai" target="_blank" rel="noopener">Creen AI</a>
+<a href="https://dreamina.capcut.com" target="_blank" rel="noopener">Dreamina</a>
+<a href="https://vheer.com" target="_blank" rel="noopener">Vheer</a>
+</div>
+<p class="hint">Dépose l’image dans « image vers vidéo », colle ce prompt, puis monte les clips dans CapCut.</p>
+</section>
+</main>
+<script>
+var F=[
+["Pomme rouge","glossy red apple-colored skin","a realistic glossy red apple head with a small stem and leaf"],
+["Pomme verte","lime-green apple-colored skin with light freckles","a realistic green apple head with a small stem"],
+["Raisin","glossy purple grape-colored skin","a head made of a dense cluster of glossy purple grapes"],
+["Banane","warm yellow banana-colored skin with a few brown spots","a curved yellow banana head with brown ripening spots"],
+["Orange","bright orange skin with a subtle peel texture","a textured orange peel head with visible pores"],
+["Fraise","strawberry-red skin with tiny pale seed-like freckles","a red strawberry head with seeds and a green leafy crown"],
+["Ananas","golden-yellow pineapple-colored skin with a diamond pattern","a pineapple head with a spiky green crown as hair"],
+["Pastèque","green striped watermelon-colored skin and red cheeks with dark freckles","a watermelon head with green striped rind and black seeds as freckles"],
+["Citron","bright lemon-yellow skin","a bright yellow lemon head with a pointed tip and dimpled peel"],
+["Kiwi","fuzzy brown-green kiwi-colored skin","a fuzzy brown kiwi head with a sliced green face and tiny black seeds"],
+["Mangue","red-orange-yellow gradient mango-colored skin","a ripe mango head with red-orange-yellow gradient skin"],
+["Cerise","deep glossy cherry-red skin","a shiny deep red cherry head with a long green stem"],
+["Myrtille","dusty blue-purple blueberry-colored skin","a round blue-purple blueberry head with a crown-shaped calyx"],
+["Noix de coco","brown, slightly rough coconut-colored skin","a hairy brown coconut head with three dark marks on top"],
+["Pêche","soft pink-orange peach-colored skin","a fuzzy peach head with pink-orange blush and a small leaf"],
+["Poire","green-yellow pear-colored skin","a green-yellow pear head with a narrow top and a tiny stem"],
+["Framboise","raspberry-red skin with a fine bumpy texture","a head made of tiny glossy red drupelets with small green leaves"],
+["Grenade","dark red leathery pomegranate-colored skin","a pomegranate head with red leathery skin and ruby seeds around the mouth"],
+["Melon","beige netted cantaloupe-colored skin with orange tones","a netted cantaloupe head with a rough beige texture"],
+["Avocat","dark bumpy avocado-green skin","an avocado head with dark bumpy green skin and creamy green flesh"],
+["Fruit du dragon","hot pink skin with green scale-like accents","a dragon fruit head with hot pink skin and green scale-like leaves"]];
+var LOOK=["Peau de la couleur du fruit","Tête de fruit"];
+var SIZE=[["Géant musclé de 2,5 m","a towering 2.5-meter-tall muscular"],["Ado normal","a teenage"]];
+var OUT=[["Survêtement vert à bandes blanches","a dark green tracksuit with white stripes, a gold chain and black sneakers"],["Sweat à capuche et pantalon large","an oversized hoodie, baggy pants and stylish sneakers"],["Bomber et jean","a bomber jacket, black jeans and white sneakers"],["Doudoune, bob et jogging","a black puffer vest over a white hoodie, a black bucket hat, black joggers and white sneakers"]];
+var PLACE=[["Cantine d’école","a bright school cafeteria with big windows and warm golden light, a spilled food tray on the floor, students filming with phones"],["Rue avec grands immeubles","an urban street with tall skyscrapers at golden hour"],["Terrain de basket","an outdoor basketball court in a city at sunset"],["Couloir de lycée","a busy high-school hallway with lockers and curious students"]];
+var MOOD=[["Sourire charismatique","a charismatic smile showing teeth"],["En colère","an angry intimidating face"],["Calme et détendu","a calm, unbothered expression"],["Rigolo","a goofy wide grin"]];
+var CAM=[["Contre-plongée","extreme low-angle shot looking up to emphasize the height"],["Plan moyen","medium shot at eye level"],["Plan large","wide cinematic shot"]];
+var $=function(i){return document.getElementById(i)};
+function fill(id,arr,none){var s=$(id);if(none){s.add(new Option("Personne","-1"))}
+arr.forEach(function(a,i){s.add(new Option(typeof a=="string"?a:a[0],i))})}
+fill("fruit",F);fill("rival",F,true);fill("look",LOOK);fill("size",SIZE);fill("outfit",OUT);fill("place",PLACE);fill("mood",MOOD);fill("cam",CAM);
+$("fruit").value=2;$("rival").value=1;
+function desc(f,look){return look==0?"with "+F[f][1]+" and a fully human face":"with "+F[f][2]+", full human body, large expressive eyes and a mouth with teeth"}
+function build(){
+var f=+$("fruit").value,r=+$("rival").value,look=+$("look").value;
+var t="Pixar-style semi-realistic 3D render, vertical 9:16. In "+PLACE[$("place").value][1]+", "+SIZE[$("size").value][1]+" character "+desc(f,look)+", wearing "+OUT[$("outfit").value][1]+", with "+MOOD[$("mood").value][1]+".";
+if(r>=0)t+=" He faces a smaller teenage character "+desc(r,look)+", wearing a black puffer vest over a white hoodie, a bucket hat and white sneakers, calm and unbothered, holding a piece of fruit.";
+t+=" "+CAM[$("cam").value][1]+", cinematic lighting, ultra-detailed, 4K";
+$("imgp").value=t;
+$("vidp").value="Animate this image: slow camera push-in. "+(r>=0?"The big character steps forward and growls while the smaller one stays calm and takes a bite of his fruit.":"The character flexes, turns toward the camera and smiles.")+" Subtle breathing and cloth movement, people in the background react and film with phones. 5 seconds, vertical 9:16, cinematic."}
+$("build").onclick=build;build();
+$("gen").onclick=async function(){
+var b=$("gen"),m=$("msg"),o=$("out"),d=$("dl");
+b.disabled=true;m.textContent="Génération en cours…";o.hidden=true;d.hidden=true;
+try{var r=await fetch("/api/image?prompt="+encodeURIComponent($("imgp").value));
+if(!r.ok){var e=await r.json().catch(function(){return{}});m.textContent=e.error||"Erreur.";return}
+var u=URL.createObjectURL(await r.blob());o.src=u;d.href=u;o.hidden=false;d.hidden=false;m.textContent="Voilà !"}
+catch(e){m.textContent="Erreur réseau."}finally{b.disabled=false}};
+$("cp").onclick=function(){var t=$("vidp");t.select();try{navigator.clipboard.writeText(t.value)}catch(e){document.execCommand("copy")}$("cp").textContent="Copié !"};
+</script></body></html>
