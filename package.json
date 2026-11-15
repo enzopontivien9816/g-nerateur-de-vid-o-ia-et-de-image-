@@ -1,8 +1,9 @@
 {
-  "name": "fruits-ia",
-  "version": "1.0.0",
-  "private": true,
-  "main": "server.js",
-  "scripts": { "start": "node server.js" },
-  "dependencies": { "express": "^4.19.2" }
+  "name":"videox-ai",
+  "version":"1.0.0",
+  "private":true,
+  "description":"VIDEOX AI - studio de création de vidéos et images IA",
+  "main":"server.js",
+  "scripts":{"start":"node server.js"},
+  "dependencies":{"express":"^4.19.2"}
 }
