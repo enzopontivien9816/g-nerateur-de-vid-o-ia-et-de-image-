@@ -1,118 +1,24 @@
-<!DOCTYPE html>
-<html lang="fr"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fruits Géants IA</title>
-<style>
-:root{--bg:#ffd23f;--ink:#2a1450;--card:#fffdf5;--ac:#7b2cbf}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,sans-serif;background:var(--bg);color:var(--ink)}
-main{max-width:540px;margin:0 auto;padding:18px 14px 44px}
-h1{margin:6px 0 4px;font-size:2rem}
-h2{margin:0 0 8px;font-size:1.15rem}
-.lead{margin:0 0 16px;font-weight:600}
-.card{background:var(--card);border:3px solid var(--ink);border-radius:16px;box-shadow:5px 5px 0 var(--ink);padding:14px;margin-bottom:16px}
-label{display:block;font-weight:700;margin:10px 0 4px}
-select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:10px;padding:10px}
-textarea{min-height:120px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-button{font:inherit;font-weight:700;background:var(--ac);color:#fff;border:3px solid var(--ink);border-radius:12px;padding:10px 14px;margin:8px 8px 0 0;cursor:pointer}
-button.alt{background:var(--card);color:var(--ink);padding:7px 11px;font-size:.9rem}
-button.big{width:100%;font-size:1.1rem;margin-right:0}
-button:disabled{opacity:.6;cursor:wait}
-img{width:100%;border-radius:12px;display:block;margin-top:8px}
-#msg{font-weight:700;margin:0}
-.links a{display:inline-block;margin:6px 6px 0 0;padding:6px 12px;border:2px solid var(--ink);border-radius:999px;background:#b5e61d;color:#2a1450;font-weight:700;text-decoration:none}
-.hint{font-size:.88rem;margin:8px 0 0}
-</style></head><body><main>
-<h1>Fruits Géants IA</h1>
-<p class="lead">Compose ton personnage, génère l’image, puis anime-la.</p>
-
-<section class="card">
-<label for="fruit">Fruit</label><select id="fruit"></select>
-<label for="rival">Face à face avec (facultatif)</label><select id="rival"></select>
-<div class="row">
-<div><label for="look">Apparence</label><select id="look"></select></div>
-<div><label for="size">Taille</label><select id="size"></select></div>
-</div>
-<label for="outfit">Tenue</label><select id="outfit"></select>
-<label for="place">Décor</label><select id="place"></select>
-<div class="row">
-<div><label for="mood">Humeur</label><select id="mood"></select></div>
-<div><label for="cam">Caméra</label><select id="cam"></select></div>
-</div>
-<button class="big" id="build" type="button">Créer le prompt</button>
-</section>
-
-<section class="card">
-<h2>Prompt image (modifiable)</h2>
-<textarea id="imgp"></textarea>
-<button class="big" id="gen" type="button">Générer l’image</button>
-<p id="msg" style="margin-top:10px">Compte 10 à 30 secondes par image.</p>
-<img id="out" alt="Image générée" hidden>
-<a id="dl" download="fruit.jpg" hidden><button class="alt" type="button">Télécharger l’image</button></a>
-</section>
-
-<section class="card">
-<h2>Prompt vidéo</h2>
-<textarea id="vidp" style="min-height:90px"></textarea>
-<button class="alt" id="cp" type="button">Copier</button>
-<div class="links">
-<a href="https://www.creen.ai" target="_blank" rel="noopener">Creen AI</a>
-<a href="https://dreamina.capcut.com" target="_blank" rel="noopener">Dreamina</a>
-<a href="https://vheer.com" target="_blank" rel="noopener">Vheer</a>
-</div>
-<p class="hint">Dépose l’image dans « image vers vidéo », colle ce prompt, puis monte les clips dans CapCut.</p>
-</section>
-</main>
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090d1b"><title>VIDEOX AI — Studio IA</title><style>
+:root{--bg:#090d1b;--panel:#111a30;--line:#26385f;--muted:#a5b2d0;--blue:#638cff;--violet:#a56cff;--white:#f4f7ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 70% -20%,#263b78,transparent 42%),var(--bg);color:var(--white);font:15px Inter,system-ui,Arial}.layout{display:grid;grid-template-columns:230px 1fr;min-height:100vh}.side{padding:25px 16px;background:#090f20;border-right:1px solid var(--line)}.logo{font-weight:950;font-size:22px;letter-spacing:1px;margin:4px 10px 35px}.logo span{color:#8daaff}.nav button{display:block;width:100%;text-align:left;margin:6px 0;background:transparent;border:1px solid transparent;color:#c4cee6;padding:13px;border-radius:12px;cursor:pointer}.nav button.active,.nav button:hover{background:#1a294c;border-color:#354b7c;color:white}.main{padding:30px;max-width:1450px;width:100%;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:26px}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#9eb2ff;font-weight:800}.top h1{font-size:clamp(26px,4vw,40px);margin:7px 0}.muted{color:var(--muted)}.credit{padding:12px 16px;border:1px solid #3b5791;border-radius:14px;background:#142344;white-space:nowrap}.credit b{font-size:20px;color:#b5c5ff}.hero{padding:28px;border:1px solid #344c80;border-radius:22px;background:linear-gradient(120deg,#192d58,#171833 70%,#2a1b50);margin-bottom:20px}.hero h2{font-size:28px;margin:8px 0}.hero p{color:#c4cee7;line-height:1.6;max-width:650px}.tags{display:flex;gap:8px;flex-wrap:wrap}.tag{font-size:12px;border:1px solid #4a6094;padding:7px 10px;border-radius:25px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.card{background:linear-gradient(160deg,#131e36,#10172a);border:1px solid var(--line);border-radius:18px;padding:21px;min-width:0}.card h3{margin:0 0 7px;font-size:19px}.card p{color:var(--muted);line-height:1.5}.field{margin:14px 0}.field label{display:block;font-weight:700;font-size:13px;margin-bottom:8px;color:#d1dbf2}input,textarea,select{width:100%;background:#091225;color:white;border:1px solid #30436b;border-radius:11px;padding:12px;font:inherit}textarea{min-height:115px;resize:vertical}button.primary{background:linear-gradient(100deg,var(--blue),var(--violet));border:0;color:white;padding:12px 17px;border-radius:12px;font-weight:800;cursor:pointer}button.secondary{background:#202f50;border:1px solid #40577f;color:white;padding:11px 15px;border-radius:11px;cursor:pointer}.output{background:#091225;border:1px solid #2c406a;border-radius:12px;padding:14px;white-space:pre-wrap;line-height:1.55;min-height:75px;overflow-wrap:anywhere}.preview{min-height:240px;border:1px dashed #465b8a;border-radius:15px;display:grid;place-items:center;text-align:center;color:#aebce0;background:radial-gradient(circle,#243a70,#10172a 70%);padding:16px}.preview img{max-width:100%;max-height:420px;border-radius:12px}.hidden{display:none!important}.notice{background:#302817;border:1px solid #725c2c;color:#f2dda9;border-radius:12px;padding:12px;font-size:13px;line-height:1.5;margin-top:15px}.status{font-size:13px;color:#aab8d5;margin-top:10px}.creator{border-color:#7153ad}.stat{font-size:28px;font-weight:900;color:#b7c6ff}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}footer{color:#7382a5;font-size:12px;margin-top:28px}@media(max-width:820px){.layout{grid-template-columns:1fr}.side{display:none}.main{padding:18px 14px}.top{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.hero{padding:20px}}
+</style></head><body><div class="layout"><aside class="side"><div class="logo">VIDEOX <span>AI</span></div><nav class="nav"><button class="active" data-page="home">✦ Tableau de bord</button><button data-page="video">▣ Générer une vidéo</button><button data-page="image">▧ Générer une image</button><button data-page="prompt">✎ Générateur de prompts</button><button data-page="creator">♛ Panel Créateur</button></nav><div class="card" style="margin-top:35px"><div class="muted">Crédits du jour</div><div class="stat"><span id="sideCredits">50</span><small style="font-size:13px;color:#9aa9c9"> / 50</small></div><small class="muted">Renouvellement quotidien</small></div></aside><main class="main"><header class="top"><div><div class="eyebrow">Ton studio créatif intelligent</div><h1 id="title">Imagine. Crée. Publie.</h1><div class="muted" id="subtitle">Crée des vidéos verticales et des images avec l'IA.</div></div><div class="credit">⚡ <b id="credits">50</b> <span class="muted">crédits restants</span></div></header>
+<section id="home"><div class="hero"><div class="eyebrow">Bienvenue dans ton studio</div><h2>Ton imagination passe en mode IA.</h2><p>Prépare des vidéos TikTok et YouTube Shorts, génère des images et transforme tes idées en prompts détaillés.</p><div class="tags"><span class="tag">50 crédits vidéo / jour</span><span class="tag">Prompts gratuits</span><span class="tag">Images sans crédits VIDEOX</span><span class="tag">Format 9:16</span></div></div><div class="grid"><div class="card"><h3>▣ Générateur vidéo</h3><p>Prépare une vidéo verticale avec ton idée et ton style.</p><button class="primary" onclick="page('video')">Créer une vidéo</button></div><div class="card"><h3>▧ Générateur d'images</h3><p>Génère une image à partir d'une description.</p><button class="primary" onclick="page('image')">Créer une image</button></div><div class="card"><h3>✎ Assistant de prompts</h3><p>Améliore tes idées en prompts complets et précis.</p><button class="primary" onclick="page('prompt')">Créer un prompt</button></div><div class="card"><h3>♛ Espace Créateur</h3><p>Accède au tableau de contrôle réservé au propriétaire.</p><button class="secondary" onclick="page('creator')">Ouvrir le panel</button></div></div><div class="notice">Les images sont générées via un service tiers gratuit lorsqu'il est disponible. La génération vidéo réelle nécessite une API vidéo compatible : le site prépare le prompt et gère les crédits, mais ne simule pas un rendu vidéo.</div></section>
+<section id="video" class="hidden"><div class="grid"><div class="card"><h3>Générer une vidéo</h3><p>Une génération préparée coûte 25 crédits. Ton quota revient à 50 chaque jour.</p><div class="field"><label>Décris ta vidéo</label><textarea id="vidIdea" placeholder="Un dragon lumineux survole une ville futuriste sous la pluie..."></textarea></div><div class="field"><label>Style</label><select id="vidStyle"><option>Cinématique réaliste</option><option>Anime</option><option>3D</option><option>Gaming</option><option>Documentaire</option><option>Publicité dynamique</option></select></div><div class="field"><label>Durée</label><select id="vidDuration"><option>5 secondes</option><option>10 secondes</option><option>15 secondes</option></select></div><button class="primary" onclick="makeVideo()">Préparer la vidéo · 25 crédits</button><div id="vidStatus" class="status"></div></div><div class="card"><h3>Prompt vidéo prêt</h3><div id="vidOut" class="output">Ton prompt vidéo apparaîtra ici.</div><div class="actions"><button class="secondary" onclick="copy('vidOut')">Copier le prompt</button></div><div class="preview" style="margin-top:14px">Format vertical 9:16<br>Connecte un fournisseur vidéo pour obtenir le fichier MP4.</div></div></div></section>
+<section id="image" class="hidden"><div class="grid"><div class="card"><h3>Générateur d'images</h3><p>Les images ne consomment pas tes crédits vidéo VIDEOX.</p><div class="field"><label>Description de l'image</label><textarea id="imgIdea" placeholder="Une ville cyberpunk au coucher du soleil, ultra détaillée..."></textarea></div><div class="field"><label>Style</label><select id="imgStyle"><option>Phot réaliste</option><option>Anime</option><option>Fantasy</option><option>Cyberpunk</option><option>Illustration 3D</option><option>Minimaliste</option></select></div><button class="primary" onclick="makeImage()">Générer l'image gratuitement</button><div id="imgStatus" class="status"></div></div><div class="card"><h3>Résultat</h3><div class="preview" id="imgPreview">Ton image apparaîtra ici.</div><div class="actions"><a id="imgDownload" class="hidden" download="videox-image.jpg"><button class="secondary">Enregistrer l'image</button></a></div></div></div></section>
+<section id="prompt" class="hidden"><div class="grid"><div class="card"><h3>Assistant de prompts gratuit</h3><div class="field"><label>Ton idée</label><textarea id="idea" placeholder="Une voiture de sport traverse Tokyo la nuit..."></textarea></div><div class="field"><label>Type</label><select id="type"><option>Vidéo TikTok / YouTube Shorts</option><option>Image IA</option><option>Publicité produit</option><option>Histoire courte</option></select></div><div class="field"><label>Ambiance</label><select id="mood"><option>Épique et cinématique</option><option>Futuriste</option><option>Drôle et dynamique</option><option>Mystérieuse</option><option>Éducative</option></select></div><button class="primary" onclick="makePrompt()">Améliorer mon prompt — gratuit</button></div><div class="card"><h3>Prompt amélioré</h3><div id="promptOut" class="output">Ton prompt apparaîtra ici.</div><div class="actions"><button class="secondary" onclick="copy('promptOut')">Copier</button><button class="secondary" onclick="savePrompt()">Enregistrer</button></div></div></div></section>
+<section id="creator" class="hidden"><div class="card creator" id="creatorLogin"><div class="eyebrow">Accès privé</div><h3>Panel Créateur</h3><p>Connexion réservée au propriétaire de VIDEOX AI.</p><div class="field"><label>Mot de passe créateur</label><input type="password" id="creatorPassword" placeholder="Mot de passe"></div><button class="primary" onclick="creatorLogin()">Se connecter</button><div id="creatorError" class="status"></div></div><div class="card hidden" id="creatorPanel"><div class="eyebrow">Mode propriétaire</div><h3>Tableau de contrôle</h3><div class="grid"><div class="card"><div class="muted">Visiteurs suivis aujourd'hui</div><div class="stat" id="statVisitors">0</div></div><div class="card"><div class="muted">Crédits vidéo consommés aujourd'hui</div><div class="stat" id="statCredits">0</div></div></div><div class="actions"><button class="secondary" onclick="loadStats()">Actualiser les statistiques</button><button class="secondary" onclick="logoutCreator()">Déconnexion</button></div><div class="notice">Le mot de passe est vérifié côté serveur via une variable privée Render. Il n'est pas enregistré dans le code public.</div></div></section><footer>VIDEOX AI · Studio de création IA</footer></main></div>
 <script>
-var F=[
-["Pomme rouge","glossy red apple-colored skin","a realistic glossy red apple head with a small stem and leaf"],
-["Pomme verte","lime-green apple-colored skin with light freckles","a realistic green apple head with a small stem"],
-["Raisin","glossy purple grape-colored skin","a head made of a dense cluster of glossy purple grapes"],
-["Banane","warm yellow banana-colored skin with a few brown spots","a curved yellow banana head with brown ripening spots"],
-["Orange","bright orange skin with a subtle peel texture","a textured orange peel head with visible pores"],
-["Fraise","strawberry-red skin with tiny pale seed-like freckles","a red strawberry head with seeds and a green leafy crown"],
-["Ananas","golden-yellow pineapple-colored skin with a diamond pattern","a pineapple head with a spiky green crown as hair"],
-["Pastèque","green striped watermelon-colored skin and red cheeks with dark freckles","a watermelon head with green striped rind and black seeds as freckles"],
-["Citron","bright lemon-yellow skin","a bright yellow lemon head with a pointed tip and dimpled peel"],
-["Kiwi","fuzzy brown-green kiwi-colored skin","a fuzzy brown kiwi head with a sliced green face and tiny black seeds"],
-["Mangue","red-orange-yellow gradient mango-colored skin","a ripe mango head with red-orange-yellow gradient skin"],
-["Cerise","deep glossy cherry-red skin","a shiny deep red cherry head with a long green stem"],
-["Myrtille","dusty blue-purple blueberry-colored skin","a round blue-purple blueberry head with a crown-shaped calyx"],
-["Noix de coco","brown, slightly rough coconut-colored skin","a hairy brown coconut head with three dark marks on top"],
-["Pêche","soft pink-orange peach-colored skin","a fuzzy peach head with pink-orange blush and a small leaf"],
-["Poire","green-yellow pear-colored skin","a green-yellow pear head with a narrow top and a tiny stem"],
-["Framboise","raspberry-red skin with a fine bumpy texture","a head made of tiny glossy red drupelets with small green leaves"],
-["Grenade","dark red leathery pomegranate-colored skin","a pomegranate head with red leathery skin and ruby seeds around the mouth"],
-["Melon","beige netted cantaloupe-colored skin with orange tones","a netted cantaloupe head with a rough beige texture"],
-["Avocat","dark bumpy avocado-green skin","an avocado head with dark bumpy green skin and creamy green flesh"],
-["Fruit du dragon","hot pink skin with green scale-like accents","a dragon fruit head with hot pink skin and green scale-like leaves"]];
-var LOOK=["Peau de la couleur du fruit","Tête de fruit"];
-var SIZE=[["Géant musclé de 2,5 m","a towering 2.5-meter-tall muscular"],["Ado normal","a teenage"]];
-var OUT=[["Survêtement vert à bandes blanches","a dark green tracksuit with white stripes, a gold chain and black sneakers"],["Sweat à capuche et pantalon large","an oversized hoodie, baggy pants and stylish sneakers"],["Bomber et jean","a bomber jacket, black jeans and white sneakers"],["Doudoune, bob et jogging","a black puffer vest over a white hoodie, a black bucket hat, black joggers and white sneakers"]];
-var PLACE=[["Cantine d’école","a bright school cafeteria with big windows and warm golden light, a spilled food tray on the floor, students filming with phones"],["Rue avec grands immeubles","an urban street with tall skyscrapers at golden hour"],["Terrain de basket","an outdoor basketball court in a city at sunset"],["Couloir de lycée","a busy high-school hallway with lockers and curious students"]];
-var MOOD=[["Sourire charismatique","a charismatic smile showing teeth"],["En colère","an angry intimidating face"],["Calme et détendu","a calm, unbothered expression"],["Rigolo","a goofy wide grin"]];
-var CAM=[["Contre-plongée","extreme low-angle shot looking up to emphasize the height"],["Plan moyen","medium shot at eye level"],["Plan large","wide cinematic shot"]];
-var $=function(i){return document.getElementById(i)};
-function fill(id,arr,none){var s=$(id);if(none){s.add(new Option("Personne","-1"))}
-arr.forEach(function(a,i){s.add(new Option(typeof a=="string"?a:a[0],i))})}
-fill("fruit",F);fill("rival",F,true);fill("look",LOOK);fill("size",SIZE);fill("outfit",OUT);fill("place",PLACE);fill("mood",MOOD);fill("cam",CAM);
-$("fruit").value=2;$("rival").value=1;
-function desc(f,look){return look==0?"with "+F[f][1]+" and a fully human face":"with "+F[f][2]+", full human body, large expressive eyes and a mouth with teeth"}
-function build(){
-var f=+$("fruit").value,r=+$("rival").value,look=+$("look").value;
-var t="Pixar-style semi-realistic 3D render, vertical 9:16. In "+PLACE[$("place").value][1]+", "+SIZE[$("size").value][1]+" character "+desc(f,look)+", wearing "+OUT[$("outfit").value][1]+", with "+MOOD[$("mood").value][1]+".";
-if(r>=0)t+=" He faces a smaller teenage character "+desc(r,look)+", wearing a black puffer vest over a white hoodie, a bucket hat and white sneakers, calm and unbothered, holding a piece of fruit.";
-t+=" "+CAM[$("cam").value][1]+", cinematic lighting, ultra-detailed, 4K";
-$("imgp").value=t;
-$("vidp").value="Animate this image: slow camera push-in. "+(r>=0?"The big character steps forward and growls while the smaller one stays calm and takes a bite of his fruit.":"The character flexes, turns toward the camera and smiles.")+" Subtle breathing and cloth movement, people in the background react and film with phones. 5 seconds, vertical 9:16, cinematic."}
-$("build").onclick=build;build();
-$("gen").onclick=async function(){
-var b=$("gen"),m=$("msg"),o=$("out"),d=$("dl");
-b.disabled=true;m.textContent="Génération en cours…";o.hidden=true;d.hidden=true;
-try{var r=await fetch("/api/image?prompt="+encodeURIComponent($("imgp").value));
-if(!r.ok){var e=await r.json().catch(function(){return{}});m.textContent=e.error||"Erreur.";return}
-var u=URL.createObjectURL(await r.blob());o.src=u;d.href=u;o.hidden=false;d.hidden=false;m.textContent="Voilà !"}
-catch(e){m.textContent="Erreur réseau."}finally{b.disabled=false}};
-$("cp").onclick=function(){var t=$("vidp");t.select();try{navigator.clipboard.writeText(t.value)}catch(e){document.execCommand("copy")}$("cp").textContent="Copié !"};
+const titles={home:["Imagine. Crée. Publie.","Crée des vidéos verticales et des images avec l'IA."],video:["Générateur vidéo","Prépare ton prochain TikTok ou Short."],image:["Générateur d'images","Crée des visuels à partir de tes idées."],prompt:["Assistant de prompts","Transforme une idée simple en prompt détaillé."],creator:["Panel Créateur","Espace privé du propriétaire."]};
+function page(p){document.querySelectorAll("main section").forEach(s=>s.classList.add("hidden"));document.getElementById(p).classList.remove("hidden");document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===p));title.textContent=titles[p][0];subtitle.textContent=titles[p][1];if(p==="creator")loadStats();window.scrollTo({top:0,behavior:"smooth"})}
+document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>page(b.dataset.page));
+async function refresh(){try{const r=await fetch("/api/status");const d=await r.json();credits.textContent=d.remaining;sideCredits.textContent=d.remaining}catch(e){}}
+async function makeVideo(){const idea=vidIdea.value.trim();if(!idea)return alert("Écris ton idée de vidéo.");const style=vidStyle.value,dur=vidDuration.value;const full=idea+". Style "+style+". Durée "+dur+". Vidéo verticale 9:16, sujet clair, mouvements fluides, éclairage cinématique, qualité professionnelle, adaptée à TikTok et YouTube Shorts.";vidStatus.textContent="Vérification des crédits...";try{const r=await fetch("/api/video/prepare",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:full})});const d=await r.json();if(!r.ok)throw Error(d.error||"Erreur");vidOut.textContent=d.videoPrompt;vidStatus.textContent="Projet préparé. 25 crédits utilisés. Un fournisseur vidéo doit être connecté pour rendre le MP4.";refresh()}catch(e){vidStatus.textContent=e.message;}}
+async function makeImage(){const idea=imgIdea.value.trim();if(!idea)return alert("Décris ton image.");imgStatus.textContent="Génération en cours...";imgPreview.textContent="Création de ton image...";try{const r=await fetch("/api/image",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({prompt:idea+", style "+imgStyle.value+", detailed professional composition, high quality"})});const d=await r.json();if(!r.ok)throw Error(d.error||"Erreur");const img=new Image();img.onload=()=>{imgPreview.innerHTML="";imgPreview.appendChild(img);imgDownload.href=d.url;imgDownload.classList.remove("hidden");imgStatus.textContent="Image générée ! Aucun crédit vidéo utilisé."};img.onerror=()=>{imgStatus.textContent="Le service image est momentanément indisponible. Réessaie.";imgPreview.textContent="Image indisponible."};img.src=d.url}catch(e){imgStatus.textContent=e.message;imgPreview.textContent="Impossible de générer l'image."}}
+function makePrompt(){const idea=document.getElementById("idea").value.trim();if(!idea)return alert("Écris ton idée.");promptOut.textContent=type.value+" — "+mood.value+"\n\n"+idea+"\n\nDirection artistique : composition professionnelle, sujet principal bien identifiable, éclairage travaillé, détails riches, profondeur de champ, couleurs harmonieuses et rendu haute qualité. Prévoir une accroche visuelle dès les premières secondes, un cadrage dynamique et une fin mémorable. Format vertical 9:16, adapté à TikTok et YouTube Shorts. Éviter les textes illisibles, les déformations et les éléments parasites."}
+function copy(id){const t=document.getElementById(id).textContent;navigator.clipboard?.writeText(t).then(()=>alert("Copié !")).catch(()=>alert(t))}
+function savePrompt(){const t=promptOut.textContent;if(!t||t.includes("apparaîtra"))return;let a=JSON.parse(localStorage.getItem("vxSaved")||"[]");a.unshift(t);localStorage.setItem("vxSaved",JSON.stringify(a.slice(0,30)));alert("Prompt enregistré sur cet appareil.")}
+async function creatorLogin(){creatorError.textContent="Vérification...";try{const r=await fetch("/api/creator/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:creatorPassword.value})});const d=await r.json();if(!r.ok)throw Error(d.error);creatorLoginBox();await loadStats()}catch(e){creatorError.textContent=e.message}}
+function creatorLoginBox(){creatorLogin.classList.add("hidden");creatorPanel.classList.remove("hidden")}
+async function loadStats(){try{const r=await fetch("/api/creator/stats");if(!r.ok)return;const d=await r.json();creatorLogin.classList.add("hidden");creatorPanel.classList.remove("hidden");statVisitors.textContent=d.visitors;statCredits.textContent=d.creditsUsed}catch(e){}}
+async function logoutCreator(){await fetch("/api/creator/logout",{method:"POST"});creatorPanel.classList.add("hidden");creatorLogin.classList.remove("hidden");creatorPassword.value=""}
+refresh();setInterval(refresh,30000);
 </script></body></html>
